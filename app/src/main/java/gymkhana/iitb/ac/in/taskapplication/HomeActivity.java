@@ -109,14 +109,16 @@ public class HomeActivity extends AppCompatActivity
         public HeavyLoader(Context context,String param) {
             super(context);
             this.url = param;
+            result="";
         }
 
         @Override
         protected void onStartLoading() {
-            if (result!=null){
+            if (result!="" && result!=null){
                 deliverResult(result);
-            }
 
+            }
+            forceLoad();
             //Add other checks to see if data is needed again
             //then call {@link #forceLoad()}
 
@@ -143,9 +145,10 @@ public class HomeActivity extends AppCompatActivity
         @Override
         public String loadInBackground() {
             Log.i(TAG,"Load in background started with"+url);
+
             for (int i = 0; i <10 ; i++) {
                 try {
-                    Thread.sleep(1000);
+                    Thread.sleep(100);
                     result +=  " " + i;
                 } catch (InterruptedException e) {
                     Log.e(TAG, "LoadInBackground failed");
