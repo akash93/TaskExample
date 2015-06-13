@@ -22,7 +22,7 @@ public class HomeActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         textView = (TextView) findViewById(R.id.text_view);
-        getLoaderManager().initLoader(0,null,this);
+        getSupportLoaderManager().initLoader(0,null,this);
     }
 
     @Override
@@ -50,6 +50,7 @@ public class HomeActivity extends AppCompatActivity
     @Override
     public Loader<String> onCreateLoader(int i, Bundle bundle) {
         return new HeavyLoader(getApplicationContext(),"Some random url");
+
     }
 
     @Override
@@ -99,7 +100,7 @@ public class HomeActivity extends AppCompatActivity
     }
 
 
-    public class HeavyLoader extends AsyncTaskLoader<String>{
+    public static class HeavyLoader extends AsyncTaskLoader<String>{
 
         String url;
         //Will store the data if it was processed already
