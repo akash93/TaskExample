@@ -63,42 +63,6 @@ public class HomeActivity extends AppCompatActivity
         //Clear data
     }
 
-    public class HeavyTask extends AsyncTask<String,Integer,String>{
-
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-        }
-
-        @Override
-        protected String doInBackground(String... params) {
-            String  url  = params[0];
-            Log.i(TAG,"Do in background started with"+params[0]);
-            String result= "";
-            for (int i = 0; i <10 ; i++) {
-                try {
-                    Thread.sleep(1000);
-                    publishProgress(i);
-                    result +=  " " + i;
-                } catch (InterruptedException e) {
-                    Log.e(TAG, "doInBackground failed");
-                }
-            }
-            return result;
-        }
-
-        @Override
-        protected void onProgressUpdate(Integer... values) {
-            super.onProgressUpdate(values);
-            Log.i(TAG, "Current progress is "+ values[0]);
-        }
-
-        @Override
-        protected void onPostExecute(String s) {
-            textView.setText(s);
-        }
-    }
-
 
     public static class HeavyLoader extends AsyncTaskLoader<String>{
 
